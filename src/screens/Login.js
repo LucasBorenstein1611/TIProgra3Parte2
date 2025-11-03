@@ -1,0 +1,147 @@
+import React, { Component } from 'react';
+import { View, Text, Pressable, StyleSheet, TextInput } from 'react-native';
+import { auth } from '../firebase/config';
+
+class Login extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: "",
+            password: "",
+            login: false,
+        }
+    }
+
+    onSubmit() {
+
+        if (!this.state.email.includes("@")) {
+            alert("Email mal formateado");
+            return;
+        }
+        if (this.state.password.length < 6) {
+            alert("La password debe tener una longitud mínima de 6 caracteres");
+            return;
+        }
+
+        auth.signInWithEmailAndPassword(this.state.email, this.state.password)
+            .then(response => {
+                this.setState({ login: true });
+                this.props.navigation.navigate('Menu');
+            })
+            .catch(error => {
+                console.log(error.message);
+                const errorMessage = error.message;
+                this.setState({ error: errorMessage })
+                alert(errorMessage);
+            })
+    }
+
+    render() {
+        return (
+          
+            <View style={styles.screen}>
+                <View style={styles.card}>
+                    <Text style={styles.title}>Iniciar Sesión</Text>
+
+                    <Text style={styles.label}>Email</Text>
+
+                    <TextInput
+                        style={styles.input}
+                        keyboardType='email-address'
+                        placeholder='Ingrese su email'
+                        onChangeText={(text) => this.setState({ email: text })}
+                        value={this.state.email}
+                    />
+
+                    <Text style={styles.label}>Contraseña</Text>
+                    <TextInput
+                        style={styles.input}
+                        keyboardType='default'
+                        placeholder='Ingrese su contraseña'
+                        secureTextEntry={true}
+                        onChangeText={(text) => this.setState({ password: text })}
+                        value={this.state.password}
+                    />
+
+                    <Pressable style={[styles.button, styles.buttonPrimary]} onPress={() => this.onSubmit()}>
+                        <Text style={styles.buttonText}>Iniciar Sesión</Text>
+                    </Pressable>
+
+                    <Pressable style={styles.linkButton} onPress={() => this.props.navigation.navigate('Register')}>
+                        <Text style={styles.linkText}>No tengo cuenta</Text>
+                    </Pressable>
+                </View>
+            </View>
+        );
+    }
+}
+
+export default Login;
+
+const styles = StyleSheet.create({
+    title: {
+        fontSize: 36,
+        fontWeight: '800',
+        marginBottom: 16,
+        color: '#000',
+        textAlign: 'center',
+        marginTop: 16,
+    },
+    input: {
+        height: 44,
+        paddingHorizontal: 12,
+        borderWidth: 1,
+        borderColor: '#ccc',
+        borderRadius: 6,
+        marginVertical: 10,
+        backgroundColor: '#fff',
+        width: '80%',
+        maxWidth: 360,
+        alignSelf: 'center'
+    },
+    button: {
+        paddingVertical: 12,
+        borderRadius: 6,
+        alignItems: 'center',
+        marginTop: 8,
+        width: '80%',
+        alignSelf: 'center',
+        maxWidth: 360,
+    },
+    buttonPrimary: {
+        backgroundColor: '#6cb6ff' 
+    },
+    buttonText: {
+        color: '#fff',
+        fontWeight: '600'
+    },
+    linkButton: {
+        backgroundColor: 'transparent',
+        alignItems: 'center',
+        paddingVertical: 8
+    },
+    linkText: {
+        color: '#333'
+    },
+    label: {
+        width: '80%',
+        maxWidth: 360,
+        alignSelf: 'center',
+        color: '#000',
+        fontSize: 16,
+        fontWeight: '600',
+        marginTop: 8,
+        marginBottom: 6
+    },
+    screen: {
+        flex: 1,
+        backgroundColor: '#f2f2f2',
+        paddingHorizontal: 10,
+        marginTop: 20
+    },
+    card: {
+        backgroundColor: '#eee',
+        borderRadius: 8,
+        padding: 16
+    },
+});
