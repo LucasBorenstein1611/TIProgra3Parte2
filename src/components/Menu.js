@@ -10,22 +10,22 @@ const Tab = createBottomTabNavigator();
 
 function Menu() {
     return (
-        <Tab.Navigator>
+        <Tab.Navigator screenOptions={{tabBarShowLabel: false}}>
 
             <Tab.Screen
                 name="Home"
                 component={Home}
-                options={{ headerShown: false, tabBarIcon: () => <Fontisto name="home" size={24} color="black" /> }}
+                options={{ tabBarIcon: () => <Fontisto name="home" size={24} color="black" /> }}
             />
             <Tab.Screen
                 name="NuevoPost"
                 component={NuevoPost}
-                options={{ headerShown: false, tabBarIcon: () => <AntDesign name="plus" size={24} color="black" /> }}
+                options={{ tabBarIcon: () => <AntDesign name="plus" size={24} color="black" /> }}
             />
             <Tab.Screen
                 name="Profile"
                 component={Profile}
-                options={{ headerShown: false, tabBarIcon: () => <AntDesign name="user" size={24} color="black" /> }}
+                options={{ tabBarIcon: () => <AntDesign name="user" size={24} color="black" /> }}
             />
 
         </Tab.Navigator>
