@@ -10,7 +10,7 @@ const Tab = createBottomTabNavigator();
 
 function Menu() {
     return (
-        <Tab.Navigator screenOptions={{tabBarShowLabel: false}}>
+        <Tab.Navigator screenOptions={{headerShown: false, tabBarShowLabel: false}}>
 
             <Tab.Screen
                 name="Home"

@@ -80,12 +80,12 @@ class Register extends Component {
                         value={this.state.password}
                     />
 
-                    <Pressable style={[styles.button, styles.buttonSecondary]} onPress={() => this.onSubmit()}>
+                    <Pressable style={styles.button} onPress={() => this.onSubmit()}>
                         <Text style={styles.buttonText}>Registrarse</Text>
                     </Pressable>
 
-                    <Pressable style={[styles.button, styles.buttonSecondary]} onPress={() => this.props.navigation.navigate('Login')}>
-                        <Text style={styles.buttonText}>Ya tengo cuenta</Text>
+                    <Pressable style={styles.linkButton} onPress={() => this.props.navigation.navigate('Login')}>
+                        <Text style={styles.linkText}>Ya tengo cuenta</Text>
                     </Pressable>
                 </View>
             </View>
@@ -103,7 +103,6 @@ const styles = StyleSheet.create({
         marginTop: 20
     },
     card: {
-        backgroundColor: '#eee',
         borderRadius: 8,
         padding: 16
     },
@@ -141,7 +140,7 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         borderRadius: 6,
         alignItems: 'center',
-        marginTop: 8,
+        marginTop: 20,
         width: '80%',
         maxWidth: 360,
         alignSelf: 'center',
@@ -157,7 +156,7 @@ const styles = StyleSheet.create({
     linkButton: {
         backgroundColor: 'transparent',
         alignItems: 'center',
-        paddingVertical: 8
+        paddingVertical: 12
     },
     linkText: {
         color: '#333'

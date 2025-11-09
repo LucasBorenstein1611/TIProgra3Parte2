@@ -41,9 +41,15 @@ class Post extends Component {
             <Text style={styles.buttonText}>{likeInvididual ? 'Dislike' : 'Like'}</Text>
           </Pressable>
 
+          <Pressable style={styles.button}>
+            <Text style={styles.buttonText}>Comentar</Text>
+          </Pressable>
+
           <Text style={styles.likesCount}>
             {likesTotal.length} {likesTotal.length === 1 ? 'like' : 'likes'}
           </Text>
+
+        
 
         </View>
       </View>

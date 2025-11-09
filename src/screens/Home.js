@@ -30,8 +30,7 @@ class Home extends Component {
 
     render() {
         return (
-            <View style={styles.contador}>
-                <Text>Home</Text>
+            <View style={styles.contenedor}>
                 <FlatList
                     data={this.state.posts}
                     keyExtractor={item => item.id}
@@ -45,9 +44,9 @@ class Home extends Component {
 export default Home;
 
 const styles = StyleSheet.create({
-    contador: {
+    contenedor: {
         flex: 1,
-        alignItems: 'center',
+
         justifyContent: 'center'
     }
 });
