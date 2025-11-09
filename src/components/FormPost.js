@@ -17,6 +17,9 @@ class FormPost extends Component {
             alert('Debes estar logueado para crear un post');
             return;
         }
+        if(this.state.comentario==""){
+            alert('No se puede crear un post vacio')
+        }else{
 
         db.collection('posts').add({
             owner: auth.currentUser.email,
@@ -32,6 +35,7 @@ class FormPost extends Component {
                 console.log("Error al crear post:", error);
                 alert("Error al crear el post");
             });
+        }
     }
 
     render() {
