@@ -3,7 +3,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../screens/Home';
 import NuevoPost from '../screens/NuevoPost';
 import Profile from '../screens/Profile';
-import Comentarios from '../screens/Comentarios';
 import Fontisto from '@expo/vector-icons/Fontisto';
 import AntDesign from '@expo/vector-icons/AntDesign';
 
