@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         borderRadius: 6,
         alignItems: 'center',
-        marginTop: 8,
+        marginTop: 20,
         width: '80%',
         alignSelf: 'center',
         maxWidth: 360,
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     linkButton: {
         backgroundColor: 'transparent',
         alignItems: 'center',
-        paddingVertical: 8
+        paddingVertical: 15
     },
     linkText: {
         color: '#333'
@@ -140,7 +140,6 @@ const styles = StyleSheet.create({
         marginTop: 20
     },
     card: {
-        backgroundColor: '#eee',
         borderRadius: 8,
         padding: 16
     },
