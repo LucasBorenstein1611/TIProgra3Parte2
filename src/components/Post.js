@@ -25,12 +25,23 @@ class Post extends Component {
     }
   };
 
+  boton() {
+    if (this.props.boton === 'comentar'){
+      return(
+        <Pressable style={styles.commentButton} onPress={()=> this.props.navigation.navigate('Comentar', {createdAt: this.props.data.createdAt})}>
+          <Text style={styles.commentButtonText}>Comentar</Text>
+        </Pressable>
+        )
+    }
+  }
+
   render() {
 
     let { data } = this.props;
     let email = auth.currentUser.email;
     let likesTotal = data.likesTotal || [];
     let likeInvididual = likesTotal.includes(email);
+    console.log(this.props.data.createdAt)
 
     return (
         <View style={styles.screen}>
@@ -44,9 +55,8 @@ class Post extends Component {
                             {likesTotal.length} {likesTotal.length === 1 ? 'like' : 'likes'}
                         </Text>
                     </Pressable>
-                    <Pressable style={styles.commentButton} onPress={()=> this.props.navigation.navigate('NavComentarios', {screen: 'Comentar'} )}>
-                        <Text style={styles.commentButtonText}>Comentar</Text>
-                    </Pressable>
+                    {this.boton()}
+                    
                 </View>
             </View>
         </View>

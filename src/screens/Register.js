@@ -29,7 +29,6 @@ class Register extends Component {
         auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
             .then(response => {
                 return db.collection("users").add({
-                    owner: auth.currentUser.email,
                     email: this.state.email,
                     username: this.state.username,
                     createdAt: new Date(),
