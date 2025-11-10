@@ -58,6 +58,7 @@ export default Post;
 const styles = StyleSheet.create({
   screen: {
     width: '100%',
+    paddingHorizontal:15,
   },
   card: {
     backgroundColor: '#fff',

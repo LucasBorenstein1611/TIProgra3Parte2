@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     input: {
-        width: '85%',
+        width: '75%',
         maxWidth: 420,
         height: 120,
         padding: 12,
