@@ -21,7 +21,7 @@ class Register extends Component {
             return;
         }
         if (this.state.password.length < 6) {
-            alert("La password debe tener una longitud mínima de 6 caracteres");
+            alert("La contraseña debe tener una longitud mínima de 6 caracteres");
             return;
         }
 

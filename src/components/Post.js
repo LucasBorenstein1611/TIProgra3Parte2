@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { db, auth } from '../firebase/config';
 import firebase from 'firebase';
+import {FontAwesome} from '@expo/vector-icons';
 
 class Post extends Component {
   
@@ -31,28 +32,23 @@ class Post extends Component {
     let likeInvididual = likesTotal.includes(email);
 
     return (
-      <View style={styles.screen}>
-        <View style={styles.card}>
-
-          <Text style={styles.owner}>{data.owner}</Text>
-          <Text style={styles.comentario}>{data.comentario}</Text>
-
-          <Pressable style={styles.button} onPress={() => this.likear()}>
-            <Text style={styles.buttonText}>{likeInvididual ? 'Dislike' : 'Like'}</Text>
-          </Pressable>
-
-          <Pressable style={styles.button}>
-            <Text style={styles.buttonText}>Comentar</Text>
-          </Pressable>
-
-          <Text style={styles.likesCount}>
-            {likesTotal.length} {likesTotal.length === 1 ? 'like' : 'likes'}
-          </Text>
-
-        
-
+        <View style={styles.screen}>
+            <View style={styles.card}>
+                <Text style={styles.owner}>{data.owner}</Text>
+                <Text style={styles.comentario}>{data.comentario}</Text>
+                <View style={styles.row}>  
+                    <Pressable style={styles.likesBox} onPress={() => this.likear()}>
+                        <FontAwesome name="heart" size={24} style={[styles.heartIcon, likeInvididual && styles.heartIconLiked]}/>
+                        <Text style={styles.likesText}>
+                            {likesTotal.length} {likesTotal.length === 1 ? 'like' : 'likes'}
+                        </Text>
+                    </Pressable>
+                    <Pressable style={styles.commentButton}>
+                        <Text style={styles.commentButtonText}>Comentar</Text>
+                    </Pressable>
+                </View>
+            </View>
         </View>
-      </View>
     );
   }
 }
@@ -60,38 +56,57 @@ class Post extends Component {
 export default Post;
 
 const styles = StyleSheet.create({
-  card: {
+  screen: {
     width: '100%',
+  },
+  card: {
     backgroundColor: '#fff',
-    borderRadius: 8,
-    padding: 12,
-    marginVertical: 8,
+    borderRadius: 18,
+    padding: 14,
+    marginVertical: 10,
     borderWidth: 1,
-    borderColor: '#e5e5e5'
+    borderColor: '#000',
   },
   owner: {
     fontSize: 12,
-    color: '#666',
-    marginBottom: 4
+    color: '#444',
+    marginBottom: 6,
   },
   comentario: {
-    fontSize: 16,
+    fontSize: 20,
+    marginBottom: 10,
     color: '#111',
-    marginBottom: 6
   },
-  button: {
-    backgroundColor: '#007bff',
-    paddingVertical: 8,
-    paddingHorizontal: 10,
-    borderRadius: 6,
-    marginTop: 6
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
   },
-  buttonText: {
-    color: '#fff',
-    textAlign: 'center'
+  likesBox: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
-  likesCount: {
-    marginTop: 6,
-    color: '#333'
+  heartIcon: {
+    color: '#bbb',
+    marginRight: 6,
+  },
+  heartIconLiked: {
+    color: 'red'
+  },
+  likesText: {
+    fontSize: 16,
+    color: '#333',
+  },
+  commentButton: {
+    backgroundColor: '#A7D8FF',
+    paddingVertical: 6,
+    paddingHorizontal: 14,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#000',
+  },
+  commentButtonText: {
+    fontSize: 15,
+    color: '#000'
   }
 });
