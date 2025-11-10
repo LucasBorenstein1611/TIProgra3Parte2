@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { db, auth } from '../firebase/config';
 import firebase from 'firebase';
 import {FontAwesome} from '@expo/vector-icons';
+import Comentar from '../screens/Comentar';
 
 class Post extends Component {
   
@@ -43,7 +44,7 @@ class Post extends Component {
                             {likesTotal.length} {likesTotal.length === 1 ? 'like' : 'likes'}
                         </Text>
                     </Pressable>
-                    <Pressable style={styles.commentButton}>
+                    <Pressable style={styles.commentButton} onPress={()=> this.props.navigation.navigate('NavComentarios', {screen: 'Comentar'} )}>
                         <Text style={styles.commentButtonText}>Comentar</Text>
                     </Pressable>
                 </View>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from '../screens/Home';
+import NavComentarios from './NavComentarios';
 import NuevoPost from '../screens/NuevoPost';
 import Profile from '../screens/Profile';
 import Fontisto from '@expo/vector-icons/Fontisto';
@@ -14,7 +14,7 @@ function Menu() {
 
             <Tab.Screen
                 name="Home"
-                component={Home}
+                component={NavComentarios}
                 options={{ tabBarIcon: () => <Fontisto name="home" size={24} color="black" /> }}
             />
             <Tab.Screen
