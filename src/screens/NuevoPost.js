@@ -15,12 +15,12 @@ function NuevoPost() {
 export default NuevoPost;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#f2f2f2',
-        paddingTop: 24,
-        alignItems: 'center'
-    },
+        container: {
+            flex: 1,
+            backgroundColor: '#f2f2f2',
+            paddingTop: 24,
+            alignItems: 'center'
+        },
     title: {
         fontSize: 36,
         fontWeight: '800',
