@@ -8,7 +8,7 @@ class Comentar extends Component{
     constructor(props){
         super(props);
         this.state={
-            creatdAt: this.props.route.params.createdAt,
+            createdAt: this.props.route.params.createdAt,
             texto: '',
             email: '',
             likes: '',
@@ -19,8 +19,7 @@ class Comentar extends Component{
 
 
     componentDidMount(){
-        console.log(this.state.creatdAt);
-        db.collection('posts').where('createdAt', '==', this.state.creatdAt).onSnapshot(
+        db.collection('posts').where('createdAt', '==', this.state.createdAt).onSnapshot(
             docs => {
                 let post = [];
                 docs.forEach(doc => {  
@@ -37,7 +36,7 @@ class Comentar extends Component{
                 })
             }
         )
-        db.collection('comments').where('postCreatedAt', '==', this.state.creatdAt).onSnapshot(
+        db.collection('comments').where('postCreatedAt', '==', this.state.createdAt).onSnapshot(
             docs => {
                 let comentarios = [];
                 docs.forEach(doc => {
@@ -65,7 +64,7 @@ class Comentar extends Component{
             owner: auth.currentUser.email,
             comentario: this.state.comment,
             createdAt: Date.now(),
-            postCreatedAt: this.state.creatdAt
+            postCreatedAt: this.state.createdAt
         })
             .then(() => {
                 alert('Comentario enviado');
