@@ -32,7 +32,7 @@ class Login extends Component {
                 console.log(error.message);
                 const errorMessage = error.message;
                 this.setState({ error: errorMessage })
-                alert(errorMessage);
+                alert("La contraseña y el email no coinciden");
             })
     }
 

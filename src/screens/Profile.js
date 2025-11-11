@@ -53,10 +53,6 @@ class Profile extends Component {
         console.log('salir');
         auth.signOut()
     }
-
-    // mostrarPosts(){
-    //     return this.state.posts.map(post=><Post data={post.data} key={post.id} navigation={navigation}/>)
-    // }
     
 
     render() {
@@ -65,7 +61,7 @@ class Profile extends Component {
                 <View style={styles.headInfo}>
                     <Text style={styles.info}>{this.state.username}</Text>
                     <Text style={styles.label}>{this.state.email}</Text>
-                    <Text style={styles.info}>Ultimos Posteos:</Text>
+                    <Text style={styles.infoUP}>Ultimos Posteos:</Text>
                 </View>
                 
                 
@@ -86,47 +82,57 @@ class Profile extends Component {
 }
 
 const styles = StyleSheet.create({
-    container:{
+    container: {
         flex: 1,
-        padding: 10,
-        justifyContent: 'center',
+        backgroundColor: '#FFF',
+        paddingHorizontal: 20,
+        paddingTop: 30,
     },
-    lista:{
-        flex: 1,
-        padding: 10,
-        justifyContent: 'center',
-        backgroundColor: '#bbb',
-        borderRadius: 10,
+    headInfo: {
+        marginBottom: 20,
     },
-    headInfo:{
-        marginBottom: 5
-    },
-    label:{
-        marginLeft: 10,
-        fontStyle: 'italic',
-        marginBottom: 15,
-    },
-    info:{
-        marginLeft: 10,
-        fontWeight: 'bold',
-        fontSize: 30,
-
-    },
-    delete:{
-        backgroundColor: '#FF474c',
-        padding: 10,
-        borderRadius: 8,
-        marginTop: 10,
-
-    },
-    buttonText:{
-        color: '#fff',
+    info: {
+        fontSize: 22,
         fontWeight: '600',
-        textAlign: 'center',
-        padding: 10,
-        fontSize: 20
-    }
-})
+        color: '#222',
+        marginBottom: 4,
+    },
+    infoUP: {
+        fontSize: 20,
+        fontWeight: '600',
+        color: '#222',
+        marginBottom: 4,
+    },
+    label: {
+        fontSize: 15,
+        color: '#666',
+        fontStyle: 'italic',
+        marginBottom: 16,
+    },
+    lista: {
+        flex: 1,
+    },
+    delete: {
+        backgroundColor: '#FFD6D6',
+        paddingVertical: 14,
+        borderRadius: 12,
+        marginVertical: 18,
+        borderWidth: 1,
+        borderColor: '#c54b4bff',
+        alignItems: 'center',
+        justifyContent: 'center',
+        shadowColor: '#000',
+        shadowOpacity: 0.1,
+        shadowRadius: 3,
+        elevation: 2,
+    },
+    buttonText: {
+        fontSize: 17,
+        color: '#000',
+        fontWeight: '500',
+    },
+});
+
 
 export default Profile;
 

@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import { View, Text, Pressable, StyleSheet, TextInput, FlatList } from 'react-native';
 import { db, auth } from '../firebase/config';
+import Post from '../components/Post';
+
 
 class Comentar extends Component{
     constructor(props){
@@ -14,6 +16,7 @@ class Comentar extends Component{
             comment: ''
         }
     }
+
 
     componentDidMount(){
         console.log(this.state.creatdAt);
@@ -47,10 +50,12 @@ class Comentar extends Component{
                 })
             }
         )
-        
+       
     }
 
-    
+
+   
+
 
     onSubmit(){
         if(this.state.comment==""){
@@ -73,110 +78,116 @@ class Comentar extends Component{
         }
     }
 
+
     render(){
         return(
             <View style={styles.container}>
-                <View style={styles.post}>
-                
-                    <Text style={styles.title}>{this.state.email}:</Text>
-                    <Text style={styles.text}>"{this.state.texto}"</Text>
-                    <Text style={styles.title}>Comentarios:</Text>
+                <View style={styles.card}>
+                    <Text style={styles.owner}>{this.state.email}:</Text>
+                    <Text style={styles.postText}>{this.state.texto}</Text>
+
                     <FlatList
+                        style={{ maxHeight: 325 }}
                         data={this.state.comentarios}
                         keyExtractor={item => item.id}
                         renderItem={({ item }) => (
-                            <View style={styles.comment}>
-                                <Text style={styles.persona}>{item.usuario}:</Text>
-                                <Text style={styles.palabras}>{item.comment}</Text>
+                            <View style={styles.commentBox}>
+                                <Text style={styles.commentUser}>{item.usuario}</Text>
+                                <Text style={styles.commentText}>{item.comment}</Text>
                             </View>
-                        )}/>
-                    <Text style={styles.title}>Crear nuevo comentario:</Text>
-                    <TextInput style={styles.input}
+                        )}
+                    />
+
+                    <Text style={styles.sectionTitle}>Nuevo comentario:</Text>
+                    <TextInput
+                        style={styles.input}
                         keyboardType='default'
-                        placeholder='Ingresa tu comentario'
+                        placeholder='Escribí tu comentario...'
                         onChangeText={(text) => this.setState({ comment: text })}
-                        value={this.state.comment} />
-                    <Pressable onPress={()=>this.onSubmit()} style={styles.button}>
-                        <Text style={styles.buttonText}>Enviar</Text>
+                        value={this.state.comment}
+                    />
+                    <Pressable onPress={()=>this.onSubmit()} style={styles.commentButton}>
+                        <Text style={styles.commentButtonText}>Publicar</Text>
                     </Pressable>
-                
                 </View>
-                
-                
             </View>
         )
-    }   
+    }  
 }
+
+export default Comentar;
 
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        padding:20
-    },
-    post:{
-        flex: 1,
-        borderWidth: 5,
-        borderColor: '#6cb6ff',
-        borderRadius: 10,
+        backgroundColor: '#f2f2f2',
         padding: 15,
-        marginBottom: 20,
-        backgroundColor: '#f9f9f9',
     },
-    title:{
-        fontSize: 25,
-        fontWeight: 'bold',
-        margin: 20,
-        borderBottomWidth: 2,
-        borderBottomColor: '#6cb6ff',
-        marginLeft: 0,
-    },
-    text:{
-        fontSize: 35,
-        margin: 20,
-        alignSelf: 'center',
-    },
-    comment:{
-        borderWidth: 2,
-        borderColor: '#ccc',
-        borderRadius: 6,
-        padding: 10,
+    card:{
+        backgroundColor: '#fff',
+        borderRadius: 18,
+        padding: 14,
         marginVertical: 10,
+        borderWidth: 1,
+        borderColor: '#000',
     },
-    persona:{
-        fontStyle: 'italic',
-        fontSize: 22,
-        borderBottomWidth: 2,
-        borderBottomColor: '#ccc',
-        marginVertical:10,
+    owner:{
+        fontSize: 14,
+        color: '#444',
+        marginBottom: 6,
     },
-    palabras:{
-        fontSize:25,
+    postText:{
+        fontSize: 25,
+        marginBottom: 10,
+        color: '#111',
     },
-    input: {
-        width: '100%',
-        height: 70,
-        padding: 12,
+    sectionTitle:{
+        fontSize: 17,
+        fontWeight: '600',
+        marginTop: 15,
+        marginBottom: 6,
+        color: '#111',
+    },
+    commentBox:{
+        backgroundColor: '#f7f7f7',
+        borderRadius: 10,
+        padding: 10,
+        marginVertical: 6,
         borderWidth: 1,
         borderColor: '#ccc',
-        borderRadius: 6,
-        backgroundColor: '#fff',
-        alignSelf: 'center',
-        fontSize: 20,
     },
-    button: {
-        padding: 12,
-        paddingHorizontal: 45,
-        borderRadius: 8,
+    commentUser:{
+        fontWeight: '600',
+        fontSize: 15,
+        color: '#333',
+    },
+    commentText:{
+        fontSize: 15,
+        color: '#444',
+        marginTop: 2,
+    },
+    input: {
+        borderWidth: 1,
+        borderColor: '#ccc',
+        borderRadius: 10,
+        backgroundColor: '#fafafa',
+        height: 60,
+        paddingHorizontal: 12,
+        fontSize: 16,
+        marginTop: 10,
+    },
+    commentButton: {
+        backgroundColor: '#A7D8FF',
+        paddingVertical: 10,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#000',
         alignItems: 'center',
-        alignSelf: 'flex-end',
-        marginTop: 8,
-        backgroundColor: '#6cb6ff',
+        marginTop: 12,
     },
-    buttonText:{
-        fontSize: 20,
-        color: '#fff',
-    }
-    
-})
-
-export default Comentar;
+    commentButtonText: {
+        fontSize: 16,
+        color: '#000',
+        fontWeight: '500',
+    },
+});
