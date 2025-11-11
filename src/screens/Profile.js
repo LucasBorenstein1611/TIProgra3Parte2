@@ -24,10 +24,10 @@ class Profile extends Component {
                         id: doc.id,
                         data: doc.data()
                     })
-                    this.setState({
-                        username: user[0].data.username,
-                        email: user[0].data.email,
-                    })
+                })
+                this.setState({
+                    username: user[0].data.username,
+                    email: user[0].data.email,
                 })
             }
         )
@@ -39,10 +39,9 @@ class Profile extends Component {
                         id: doc.id,
                         data: doc.data()
                     })
-                    this.setState({
-                        posts: posts
-                    }, ()=>console.log(this.state.posts))
-                    
+                })
+                this.setState({
+                    posts: posts
                 })
 
             }

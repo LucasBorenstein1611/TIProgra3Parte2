@@ -22,9 +22,8 @@ class Home extends Component {
                         id: doc.id,
                         data: doc.data()
                     })
-                    this.setState({ posts });
                 })
-               
+                this.setState({ posts });
             })
     }
 
